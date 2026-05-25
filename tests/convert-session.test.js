@@ -57,7 +57,7 @@ function loadPageScript() {
   assert.ok(match, "expected docs/index.html to contain one inline script");
 
   const elements = new Map();
-  const formatButtons = ["sub2api", "cpa", "cockpit", "9router", "axonhub", "codexmanager"].map((format) =>
+  const formatButtons = ["sub2api", "cpa", "cockpit", "9router", "codex", "axonhub", "codexmanager"].map((format) =>
     createFakeElement(`[data-format="${format}"]`, { dataset: { format } })
   );
 
@@ -286,6 +286,69 @@ function testAxonHubAuthJsonPreservesRealRefreshToken() {
   assert.equal(authJson.axonhub_note, undefined);
 }
 
+function testCodexAuthJsonMatchesNativeShapeWhenMissingRefreshToken() {
+  const { elements, formatButtons } = loadPageScript();
+  const codexButton = formatButtons.find((button) => button.dataset.format === "codex");
+  const input = elements.get("#session-input");
+  const output = elements.get("#output");
+
+  dispatch(codexButton, "click");
+  input.value = JSON.stringify({
+    user: {
+      id: "user-test",
+      email: "mark@example.com",
+    },
+    expires: "2026-08-06T14:29:36.155Z",
+    account: {
+      id: "00000000-0000-4000-9000-000000000000",
+      planType: "plus",
+    },
+    accessToken: "access-token",
+    sessionToken: "session-token",
+  });
+  dispatch(input, "input");
+
+  const authJson = JSON.parse(output.value);
+
+  assert.equal(authJson.auth_mode, "chatgpt");
+  assert.equal(authJson.OPENAI_API_KEY, null);
+  assert.equal(authJson.tokens.access_token, "access-token");
+  assert.equal(authJson.tokens.refresh_token, "");
+  assert.equal(authJson.tokens.id_token.split(".").length, 3);
+  assert.equal(authJson.tokens.account_id, "00000000-0000-4000-9000-000000000000");
+  assert.match(authJson.last_refresh, /^\d{4}-\d{2}-\d{2}T/);
+}
+
+function testCodexAuthJsonPreservesRealRefreshTokenAndIdToken() {
+  const { elements, formatButtons } = loadPageScript();
+  const codexButton = formatButtons.find((button) => button.dataset.format === "codex");
+  const input = elements.get("#session-input");
+  const output = elements.get("#output");
+
+  dispatch(codexButton, "click");
+  input.value = JSON.stringify({
+    user: {
+      email: "mark@example.com",
+    },
+    accessToken: "access-token",
+    refreshToken: "real-refresh-token",
+    idToken: "real.header.signature",
+    tokens: {
+      account_id: "chatgpt-account-1",
+    },
+  });
+  dispatch(input, "input");
+
+  const authJson = JSON.parse(output.value);
+
+  assert.equal(authJson.auth_mode, "chatgpt");
+  assert.equal(authJson.OPENAI_API_KEY, null);
+  assert.equal(authJson.tokens.access_token, "access-token");
+  assert.equal(authJson.tokens.refresh_token, "real-refresh-token");
+  assert.equal(authJson.tokens.id_token, "real.header.signature");
+  assert.equal(authJson.tokens.account_id, "chatgpt-account-1");
+}
+
 function testCodexManagerAuthJsonUsesEmptyRefreshTokenWhenMissing() {
   const { elements, formatButtons } = loadPageScript();
   const codexManagerButton = formatButtons.find((button) => button.dataset.format === "codexmanager");
@@ -351,6 +414,8 @@ testSub2apiAccountsUseTheirOwnAccessTokenExpiry();
 testSyntheticIdTokenHasCodexParseableJwtFormat();
 testAxonHubAuthJsonUsesPlaceholderRefreshTokenWhenMissing();
 testAxonHubAuthJsonPreservesRealRefreshToken();
+testCodexAuthJsonMatchesNativeShapeWhenMissingRefreshToken();
+testCodexAuthJsonPreservesRealRefreshTokenAndIdToken();
 testCodexManagerAuthJsonUsesEmptyRefreshTokenWhenMissing();
 testCodexManagerAuthJsonPreservesRealRefreshAndMetadata();
 console.log("convert-session tests passed");

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ChatGPT Session -> CPA / sub2api / Cockpit / AxonHub / Codex-Manager</title>
+    <title>ChatGPT Session -> CPA / sub2api / Cockpit / Codex / AxonHub / Codex-Manager</title>
     <meta name="theme-color" content="#24505a" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" sizes="any" />
     <style>
@@ -158,7 +158,7 @@
 
       .segmented {
         display: inline-grid;
-        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-template-columns: repeat(7, minmax(0, 1fr));
         width: min(760px, 100%);
         padding: 4px;
         border: 1px solid var(--line);
@@ -633,6 +633,7 @@
             <span>sub2api</span>
             <span>Cockpit</span>
             <span>9router</span>
+            <span>Codex</span>
             <span>AxonHub</span>
             <span>Codex-Manager</span>
           </div>
@@ -662,6 +663,7 @@
           <button type="button" data-format="cpa" aria-pressed="false">CPA</button>
           <button type="button" data-format="cockpit" aria-pressed="false">Cockpit</button>
           <button type="button" data-format="9router" aria-pressed="false">9router</button>
+          <button type="button" data-format="codex" aria-pressed="false">Codex</button>
           <button type="button" data-format="axonhub" aria-pressed="false">AxonHub</button>
           <button type="button" data-format="codexmanager" aria-pressed="false">Codex-Manager</button>
         </div>
@@ -725,7 +727,7 @@
           </div>
           <div class="panel-body">
             <p class="notice" id="cpa-notice">
-              ChatGPT Web session 一般没有 `refresh_token`；缺少真实 `id_token` 时 CPA、Cockpit 和 AxonHub 会构造 Codex 可解析的占位 JWT claims。AxonHub 缺少真实 `refresh_token` 时会写入占位值；Codex-Manager 会保留空 `refresh_token`，避免误触发后台刷新。
+              ChatGPT Web session 一般没有 `refresh_token`；缺少真实 `id_token` 时 CPA、Cockpit、Codex 和 AxonHub 会构造 Codex 可解析的占位 JWT claims。Codex 和 Codex-Manager 会保留空 `refresh_token`；AxonHub 缺少真实 `refresh_token` 时会写入占位值。
             </p>
             <div class="summary" aria-label="转换统计">
               <div class="stat">
@@ -779,6 +781,7 @@
           cpa: "CPA",
           cockpit: "Cockpit",
           "9router": "9router",
+          codex: "Codex",
           axonhub: "AxonHub",
           codexmanager: "Codex-Manager",
         };
@@ -1382,6 +1385,17 @@
             updatedAt,
           });
           const axonHubRefreshToken = refreshToken || AXONHUB_PLACEHOLDER_REFRESH_TOKEN;
+          const codexAuthJson = {
+            auth_mode: "chatgpt",
+            OPENAI_API_KEY: null,
+            tokens: {
+              id_token: idToken,
+              access_token: accessToken,
+              refresh_token: refreshToken || "",
+              account_id: accountId,
+            },
+            last_refresh: exportedAt,
+          };
           const axonHub = stripUnavailable({
             auth_mode: "chatgpt",
             last_refresh: getAxonHubLastRefresh(expiresAt, options.now || new Date()),
@@ -1423,6 +1437,7 @@
             cpa,
             cockpit,
             nineRouter,
+            codexAuthJson,
             axonHub,
             codexManager,
             sub2apiAccount,
@@ -1459,6 +1474,12 @@
             return state.converted.length === 1
               ? state.converted[0].nineRouter
               : state.converted.map((item) => item.nineRouter);
+          }
+
+          if (state.format === "codex") {
+            return state.converted.length === 1
+              ? state.converted[0].codexAuthJson
+              : state.converted.map((item) => item.codexAuthJson);
           }
 
           if (state.format === "axonhub") {
@@ -1534,7 +1555,7 @@
           elements.statErrors.textContent = String(state.skipped.length);
           elements.statFormat.textContent = OUTPUT_LABELS[state.format];
           elements.outputSubtitle.textContent = `当前输出为 ${OUTPUT_LABELS[state.format]} 导入 JSON。`;
-          elements.cpaNotice.style.display = ["cpa", "cockpit", "axonhub", "codexmanager"].includes(state.format) ? "block" : "none";
+          elements.cpaNotice.style.display = ["cpa", "cockpit", "codex", "axonhub", "codexmanager"].includes(state.format) ? "block" : "none";
 
           renderAccounts();
           renderIssues();
