@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -628,7 +628,7 @@
         <div class="title-block">
           <p class="eyebrow">Local JSON Converter</p>
           <h1>ChatGPT Session Converter</h1>
-          <div class="title-targets" aria-label="支持输出格式">
+          <div class="title-targets" aria-label="Định dạng đầu ra hỗ trợ">
             <span>CPA</span>
             <span>sub2api</span>
             <span>Cockpit</span>
@@ -638,27 +638,27 @@
             <span>Codex-Manager</span>
           </div>
         </div>
-        <div class="meta-row" aria-label="处理方式">
-          <span class="meta-chip">浏览器本地解析</span>
-          <span class="meta-chip">不上传 token</span>
-          <span class="meta-chip">不写入存储</span>
+        <div class="meta-row" aria-label="Phương thức xử lý">
+          <span class="meta-chip">Xử lý ngay trên trình duyệt</span>
+          <span class="meta-chip">Không tải token lên máy chủ</span>
+          <span class="meta-chip">Không ghi vào bộ nhớ cục bộ</span>
           <a
             class="meta-chip github-link"
             href="https://github.com/gtxx3600/GPTSession2CPAandSub2API"
             target="_blank"
             rel="noreferrer"
-            aria-label="本页面代码开源"
+            aria-label="Mã nguồn trang này (open-source)"
           >
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.24c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.5 11.5 0 0 1 12 5.78c1.02 0 2.05.14 3.01.41 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.82 1.1.82 2.22v3.3c0 .32.22.7.83.58A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z" />
             </svg>
-            <span>本页面代码开源</span>
+            <span>Mã nguồn mở</span>
           </a>
         </div>
       </header>
 
-      <section class="toolbar" aria-label="输出控制">
-        <div class="segmented" role="group" aria-label="输出格式">
+      <section class="toolbar" aria-label="Điều khiển đầu ra">
+        <div class="segmented" role="group" aria-label="Định dạng đầu ra">
           <button type="button" data-format="sub2api" aria-pressed="true">sub2api</button>
           <button type="button" data-format="cpa" aria-pressed="false">CPA</button>
           <button type="button" data-format="cockpit" aria-pressed="false">Cockpit</button>
@@ -668,8 +668,8 @@
           <button type="button" data-format="codexmanager" aria-pressed="false">Codex-Manager</button>
         </div>
         <div class="actions">
-          <button class="button button-secondary" id="copy-output" type="button" disabled>复制输出</button>
-          <button class="button button-primary" id="download-output" type="button" disabled>下载 JSON</button>
+          <button class="button button-secondary" id="copy-output" type="button" disabled>Sao chép kết quả</button>
+          <button class="button button-primary" id="download-output" type="button" disabled>Tải JSON</button>
         </div>
       </section>
 
@@ -678,18 +678,18 @@
           <div class="panel-head">
             <div>
               <h2 id="input-title">Session JSON</h2>
-              <p>粘贴 ChatGPT Web session，或拖入一个或多个 JSON 文件。</p>
+              <p>Dán session ChatGPT Web, hoặc kéo thả một hay nhiều tệp JSON.</p>
             </div>
           </div>
           <div class="panel-body">
             <div class="session-guide">
-              <strong>Session 数据从这里获取</strong>
+              <strong>Lấy dữ liệu session tại đây</strong>
               <p>
-                先在浏览器登录 ChatGPT，然后打开
+                Trước tiên đăng nhập ChatGPT trên trình duyệt, sau đó mở
                 <a href="https://chatgpt.com/api/auth/session" target="_blank" rel="noreferrer">https://chatgpt.com/api/auth/session</a>
-                ，复制页面显示的整段 JSON，粘贴到下方输入框。
+                , sao chép toàn bộ JSON hiển thị trên trang và dán vào ô bên dưới.
               </p>
-              <p class="session-warning">这段 JSON 包含 accessToken 和 sessionToken，等同敏感登录凭证，不要发给别人。</p>
+              <p class="session-warning">JSON này chứa accessToken và sessionToken, tương đương thông tin đăng nhập nhạy cảm. Không chia sẻ cho người khác.</p>
             </div>
             <a class="discord-card" href="https://discord.gg/GFmHY2TZNy" target="_blank" rel="noreferrer">
               <span class="discord-icon" aria-hidden="true">
@@ -698,52 +698,52 @@
                 </svg>
               </span>
               <span class="discord-copy">
-                <strong>加入 Discord 频道免费获取 GPT 撸羊毛信息</strong>
-                <span>本工具主要针对 Plus 账号适用，Free 账号即使转换了也没有权限调用 GPT 模型。GoPay 拉闸了，没法每天发 Plus 了；加入 Discord 频道免费获取 GPT 撸羊毛信息，然后配合本工具导入 CPA or Sub2API 使用。</span>
+                <strong>Tham gia kênh Discord để nhận thông tin cập nhật</strong>
+                <span>Công cụ này phù hợp nhất cho tài khoản Plus. Tài khoản Free dù chuyển đổi thành công vẫn không có quyền gọi mô hình GPT. Bạn có thể vào Discord để theo dõi thêm thông tin sử dụng.</span>
               </span>
-              <span class="discord-action">加入频道</span>
+              <span class="discord-action">Tham gia</span>
             </a>
             <input class="hidden" id="file-input" type="file" accept=".json,application/json" multiple />
             <div class="input-actions">
-              <button class="button button-secondary" id="pick-files" type="button">选择文件</button>
-              <button class="button button-secondary" id="load-example" type="button">填入示例结构</button>
-              <button class="button button-ghost" id="clear-input" type="button">清空</button>
+              <button class="button button-secondary" id="pick-files" type="button">Chọn tệp</button>
+              <button class="button button-secondary" id="load-example" type="button">Nạp dữ liệu mẫu</button>
+              <button class="button button-ghost" id="clear-input" type="button">Xóa</button>
             </div>
             <textarea
               id="session-input"
               spellcheck="false"
               placeholder='{"user":{"email":"mark@example.com"},"expires":"2026-08-06T14:29:36.155Z","account":{"id":"...","planType":"plus"},"accessToken":"...","sessionToken":"..."}'
             ></textarea>
-            <div class="status-line" id="input-status">等待输入。</div>
+            <div class="status-line" id="input-status">Đang chờ dữ liệu đầu vào.</div>
           </div>
         </section>
 
         <section class="panel" aria-labelledby="output-title">
           <div class="panel-head">
             <div>
-              <h2 id="output-title">转换结果</h2>
-              <p id="output-subtitle">当前输出为 sub2api 导入 JSON。</p>
+              <h2 id="output-title">Kết quả chuyển đổi</h2>
+              <p id="output-subtitle">Đầu ra hiện tại là JSON import cho sub2api.</p>
             </div>
           </div>
           <div class="panel-body">
             <p class="notice" id="cpa-notice">
-              ChatGPT Web session 一般没有 `refresh_token`；缺少真实 `id_token` 时 CPA、Cockpit、Codex 和 AxonHub 会构造 Codex 可解析的占位 JWT claims。Codex 和 Codex-Manager 会保留空 `refresh_token`；AxonHub 缺少真实 `refresh_token` 时会写入占位值。
+              ChatGPT Web session thường không có `refresh_token`; khi thiếu `id_token` thật thì CPA, Cockpit, Codex và AxonHub sẽ tạo JWT claims thay thế để Codex vẫn đọc được. Codex và Codex-Manager giữ `refresh_token` rỗng; AxonHub sẽ ghi giá trị placeholder nếu thiếu `refresh_token` thật.
             </p>
-            <div class="summary" aria-label="转换统计">
+            <div class="summary" aria-label="Thống kê chuyển đổi">
               <div class="stat">
                 <div class="stat-value" id="stat-count">0</div>
-                <div class="stat-label">账号数</div>
+                <div class="stat-label">Số tài khoản</div>
               </div>
               <div class="stat">
                 <div class="stat-value" id="stat-format">sub2api</div>
-                <div class="stat-label">输出格式</div>
+                <div class="stat-label">Định dạng đầu ra</div>
               </div>
               <div class="stat">
                 <div class="stat-value" id="stat-errors">0</div>
-                <div class="stat-label">跳过项</div>
+                <div class="stat-label">Mục bỏ qua</div>
               </div>
             </div>
-            <div class="accounts" aria-label="账号预览">
+            <div class="accounts" aria-label="Xem trước tài khoản">
               <table>
                 <colgroup>
                   <col class="col-name" />
@@ -753,22 +753,22 @@
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>名称</th>
-                    <th>邮箱</th>
-                    <th>过期时间</th>
-                    <th>来源</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>Hết hạn</th>
+                    <th>Nguồn</th>
                   </tr>
                 </thead>
                 <tbody id="account-body">
                   <tr>
-                    <td colspan="4" class="empty">暂无可转换账号。</td>
+                    <td colspan="4" class="empty">Chưa có tài khoản có thể chuyển đổi.</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="issues" id="issues"></div>
-            <textarea id="output" readonly spellcheck="false" placeholder="转换后会显示 JSON。"></textarea>
-            <div class="status-line" id="output-status">暂无输出。</div>
+            <textarea id="output" readonly spellcheck="false" placeholder="JSON sẽ hiển thị sau khi chuyển đổi."></textarea>
+            <div class="status-line" id="output-status">Chưa có đầu ra.</div>
           </div>
         </section>
       </section>
@@ -1152,7 +1152,7 @@
           try {
             parsed = JSON.parse(text);
           } catch (error) {
-            throw new Error(`JSON 解析失败：${error.message}`);
+            throw new Error(`Phân tích JSON thất bại: ${error.message}`);
           }
 
           return collectSessionLikeObjects(parsed);
@@ -1160,7 +1160,7 @@
 
         function convertSession(record, options = {}) {
           if (!isPlainObject(record)) {
-            throw new Error("session 不是 JSON 对象");
+            throw new Error("Session không phải là đối tượng JSON");
           }
 
           const accessToken = firstNonEmpty(
@@ -1174,7 +1174,7 @@
             record.credentials?.access_token,
           );
           if (!accessToken) {
-            throw new Error("缺少 accessToken");
+            throw new Error("Thiếu accessToken");
           }
           const sessionToken = firstNonEmpty(
             record.sessionToken,
@@ -1514,7 +1514,7 @@
               skipped.push({
                 sourceName: item.sourceName,
                 path: item.path,
-                reason: error instanceof Error ? error.message : "无法转换",
+                reason: error instanceof Error ? error.message : "Không thể chuyển đổi",
               });
             }
           });
@@ -1523,7 +1523,7 @@
             skipped.push({
               sourceName: "pasted-json",
               path: "$",
-              reason: "未找到包含 accessToken 和 user/email 的 session 对象",
+              reason: "Không tìm thấy đối tượng session chứa accessToken và user/email",
             });
           }
 
@@ -1554,22 +1554,22 @@
           elements.statCount.textContent = String(state.converted.length);
           elements.statErrors.textContent = String(state.skipped.length);
           elements.statFormat.textContent = OUTPUT_LABELS[state.format];
-          elements.outputSubtitle.textContent = `当前输出为 ${OUTPUT_LABELS[state.format]} 导入 JSON。`;
+          elements.outputSubtitle.textContent = `Đầu ra hiện tại là JSON import cho ${OUTPUT_LABELS[state.format]}.`;
           elements.cpaNotice.style.display = ["cpa", "cockpit", "codex", "axonhub", "codexmanager"].includes(state.format) ? "block" : "none";
 
           renderAccounts();
           renderIssues();
 
           if (outputText) {
-            setStatus(elements.outputStatus, `已生成 ${state.converted.length} 个账号。`, "ok");
+            setStatus(elements.outputStatus, `Đã tạo ${state.converted.length} tài khoản.`, "ok");
           } else {
-            setStatus(elements.outputStatus, "暂无输出。", state.skipped.length ? "error" : "");
+            setStatus(elements.outputStatus, "Chưa có đầu ra.", state.skipped.length ? "error" : "");
           }
         }
 
         function renderAccounts() {
           if (!state.converted.length) {
-            elements.accountBody.innerHTML = '<tr><td colspan="4" class="empty">暂无可转换账号。</td></tr>';
+            elements.accountBody.innerHTML = '<tr><td colspan="4" class="empty">Chưa có tài khoản có thể chuyển đổi.</td></tr>';
             return;
           }
 
@@ -1603,27 +1603,27 @@
             state.skipped = [];
             state.sessions = [];
             updateOutput();
-            setStatus(elements.inputStatus, "等待输入。");
+            setStatus(elements.inputStatus, "Đang chờ dữ liệu đầu vào.");
             return;
           }
 
           try {
             convertFromText(text);
             if (state.converted.length) {
-              setStatus(elements.inputStatus, `解析完成：${state.converted.length} 个账号，跳过 ${state.skipped.length} 项。`, "ok");
+              setStatus(elements.inputStatus, `Phân tích xong: ${state.converted.length} tài khoản, bỏ qua ${state.skipped.length} mục.`, "ok");
             } else {
-              setStatus(elements.inputStatus, "没有可转换账号。", "error");
+              setStatus(elements.inputStatus, "Không có tài khoản nào có thể chuyển đổi.", "error");
             }
           } catch (error) {
             state.converted = [];
             state.skipped = [{
               sourceName: "pasted-json",
               path: "$",
-              reason: error instanceof Error ? error.message : "JSON 解析失败",
+              reason: error instanceof Error ? error.message : "Phân tích JSON thất bại",
             }];
             state.outputText = "";
             updateOutput();
-            setStatus(elements.inputStatus, error instanceof Error ? error.message : "JSON 解析失败", "error");
+            setStatus(elements.inputStatus, error instanceof Error ? error.message : "Phân tích JSON thất bại", "error");
           }
         }
 
@@ -1653,18 +1653,18 @@
 
           try {
             await navigator.clipboard.writeText(state.outputText);
-            setStatus(elements.outputStatus, "已复制到剪贴板。", "ok");
+            setStatus(elements.outputStatus, "Đã sao chép vào clipboard.", "ok");
           } catch {
             elements.output.select();
             document.execCommand("copy");
-            setStatus(elements.outputStatus, "已复制到剪贴板。", "ok");
+            setStatus(elements.outputStatus, "Đã sao chép vào clipboard.", "ok");
           }
         }
 
         async function readFiles(files) {
           const jsonFiles = Array.from(files).filter((file) => file.name.toLowerCase().endsWith(".json"));
           if (!jsonFiles.length) {
-            setStatus(elements.inputStatus, "没有选择 JSON 文件。", "error");
+            setStatus(elements.inputStatus, "Chưa chọn tệp JSON.", "error");
             return;
           }
 
@@ -1680,7 +1680,7 @@
                 skipped.push({
                   sourceName: file.webkitRelativePath || file.name,
                   path: "$",
-                  reason: "未找到包含 accessToken 和 user/email 的 session 对象",
+                  reason: "Không tìm thấy đối tượng session chứa accessToken và user/email",
                 });
               }
               documents.push(...found);
@@ -1688,7 +1688,7 @@
               skipped.push({
                 sourceName: file.webkitRelativePath || file.name,
                 path: "$",
-                reason: error instanceof Error ? error.message : "无法读取文件",
+                reason: error instanceof Error ? error.message : "Không thể đọc tệp",
               });
             }
           }
@@ -1707,7 +1707,7 @@
               convertSkipped.push({
                 sourceName: item.sourceName,
                 path: item.path,
-                reason: error instanceof Error ? error.message : "无法转换",
+                reason: error instanceof Error ? error.message : "Không thể chuyển đổi",
               });
             }
           });
@@ -1719,7 +1719,7 @@
             ? JSON.stringify(documents[0].value, null, 2)
             : JSON.stringify(documents.map((item) => item.value), null, 2);
           updateOutput();
-          setStatus(elements.inputStatus, `读取 ${jsonFiles.length} 个文件，生成 ${converted.length} 个账号，跳过 ${convertSkipped.length} 项。`, converted.length ? "ok" : "error");
+          setStatus(elements.inputStatus, `Đã đọc ${jsonFiles.length} tệp, tạo ${converted.length} tài khoản, bỏ qua ${convertSkipped.length} mục.`, converted.length ? "ok" : "error");
         }
 
         elements.formatButtons.forEach((button) => {
