@@ -4,7 +4,7 @@ Công cụ web một trang chạy hoàn toàn ở phía trình duyệt, dùng đ
 
 ## Dùng online
 
-### [**>> Mở và dùng ngay <<**](https://gtxx3600.github.io/GPTSession2CPAandSub2API/)
+### [**>> Mở và dùng ngay <<**](https://chatgpt.io/)
 
 ## Lưu ý
 
